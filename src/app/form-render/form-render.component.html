@@ -1,1 +1,11 @@
-<p>form-render works!</p>
+<div>
+  <formio [form]="form" #frmBuilder [refresh]="refreshForm" (change)="onChange($event)" (render)="onRendered()"
+          (ready)="onReady($event)" (submit)="onSubmit($event)">
+  </formio>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <pre *ngIf="rendered">{{data | json}}</pre>
+  </div>
+</div>

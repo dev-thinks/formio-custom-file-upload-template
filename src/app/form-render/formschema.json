@@ -1,8 +1,10 @@
 ﻿{
   "components": [
     {
-      "label": "Upload",
-      "tableView": false,
+      "label": "File Upload",
+      "description": "Upload the related files/documents",
+      "tooltip": "Using \"browse\" link to start uploading.",
+      "tableView": true,
       "storage": "base64",
       "webcam": false,
       "fileTypes": [
@@ -11,7 +13,12 @@
           "value": ""
         }
       ],
-      "key": "upload",
+      "multiple": true,
+      "validate": {
+        "required": true,
+        "multiple": true
+      },
+      "key": "fileUpload",
       "type": "file",
       "input": true
     },

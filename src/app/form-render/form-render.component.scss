@@ -2,4 +2,9 @@
   .formio-component-file .fileSelector {
     text-align: right !important;
   }
+
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
 }

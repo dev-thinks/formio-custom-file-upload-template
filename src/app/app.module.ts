@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FileUploadModule} from 'primeng/fileupload';
 import {CardModule} from 'primeng/card';
-import {PrimeFileUploadComponent} from './prime-file-upload/prime-file-upload.component';
 import {FormGenComponent} from './form-gen/form-gen.component';
 import {FormioModule} from 'angular-formio';
 import {FormRenderComponent} from './form-render/form-render.component';
@@ -13,7 +12,6 @@ import {FormRenderComponent} from './form-render/form-render.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PrimeFileUploadComponent,
     FormGenComponent,
     FormRenderComponent
   ],

@@ -19,7 +19,7 @@
         "multiple": true
       },
       "fileMaxSize": "5MB",
-      "filePattern": ".pdf,video/*,image/*,.cs,.dll,.html",
+      "filePattern": ".pdf,video/*,image/*,.cs,.dll,.html,.doc*,.txt,.xls*,.csv",
       "key": "fileUpload",
       "type": "file",
       "input": true

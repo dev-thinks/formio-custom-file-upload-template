@@ -19,7 +19,7 @@
     </li>
 
     {% ctx.files.forEach(function(file, index) { %}
-      <li class="list-group-item">
+      <li class="list-group-item {% if ((index+1)%2===0) { %} list-group-item-even {% } %}">
         <div class="row">
         <div class="col-md-1">{{index + 1}}</div>
           <div class="col-md-{% if (ctx.self.hasTypes) { %}3{% } else { %}5{% } %}">

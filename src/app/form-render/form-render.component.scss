@@ -3,8 +3,18 @@
     text-align: right !important;
   }
 
+  .list-group-item {
+    padding-right: 0;
+    padding-top: .25rem;
+    padding-bottom: 0.5rem;
+  }
+
   .list-group-item:last-child {
     border-bottom-right-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
+  }
+
+  .list-group-item-even {
+    background-color: #f9f9f9;
   }
 }

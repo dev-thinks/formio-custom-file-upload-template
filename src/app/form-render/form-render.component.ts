@@ -21,7 +21,7 @@ export class FormRenderComponent implements OnInit, AfterViewInit {
   refreshForm: any;
   @ViewChild(FormioComponent) formioComponent: FormioComponent;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = (formJson as any).default;
 
     this.refreshForm = new EventEmitter();
@@ -29,39 +29,39 @@ export class FormRenderComponent implements OnInit, AfterViewInit {
     this.formTemplate();
   }
 
-  formTemplate() {
+  formTemplate(): void {
     Templates.current = {
-      'file': {
+      file: {
         form: FormTemplate.File
       }
     };
   }
 
-  onReady(event) {
+  onReady(event): void {
     console.log('Form ready!');
     this.currentForm = event.formio;
   }
 
-  onRendered() {
+  onRendered(): void {
     console.log('Form rendered!');
     this.rendered = true;
   }
 
-  onChange(event) {
+  onChange(event): void {
     console.log('Submission changed!', event);
     if (event.data) {
       this.data = event.data;
     }
   }
 
-  onSubmit(event) {
+  onSubmit(event): void {
     console.log(this.frmBuilder);
 
     this.formioComponent.formio.disabled = true;
 
     console.log(this.frmBuilder);
 
-    console.log('form submitted!')
+    console.log('form submitted!');
   }
 
   ngAfterViewInit(): void {

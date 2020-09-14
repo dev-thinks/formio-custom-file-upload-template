@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, ViewChild} from '@angular/core';
-import {FormioComponent} from 'angular-formio';
+import {AfterViewInit, Component, EventEmitter, OnInit, ViewChild} from '@angular/core';
+import {FormioComponent, Templates} from 'angular-formio';
 import * as formJson from './formschema.json';
+import {FormTemplate} from './templates/form-template';
 
 declare var jQuery: any;
 declare var $: any;
@@ -10,7 +11,7 @@ declare var $: any;
   templateUrl: './form-render.component.html',
   styleUrls: ['./form-render.component.scss']
 })
-export class FormRenderComponent implements OnInit {
+export class FormRenderComponent implements OnInit, AfterViewInit {
 
   form: any;
   data = {};
@@ -24,6 +25,16 @@ export class FormRenderComponent implements OnInit {
     this.form = (formJson as any).default;
 
     this.refreshForm = new EventEmitter();
+
+    this.formTemplate();
+  }
+
+  formTemplate() {
+    Templates.current = {
+      'file': {
+        form: FormTemplate.File
+      }
+    };
   }
 
   onReady(event) {
@@ -53,4 +64,7 @@ export class FormRenderComponent implements OnInit {
     console.log('form submitted!')
   }
 
+  ngAfterViewInit(): void {
+    console.log(Templates.framework);
+  }
 }

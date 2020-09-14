@@ -1,32 +1,36 @@
 ﻿export class FormTemplate {
   public static get File(): string {
-    return `{% if (!ctx.self.imageUpload) { %}
+    return `
+{% if (!ctx.self.imageUpload) { %}
   <ul class="list-group list-group-striped">
-    <li class="list-group-item list-group-header hidden-xs hidden-sm">
+    <li class="list-group-item list-group-header hidden-xs hidden-sm bg-info text-light">
       <div class="row">
-        {% if (!ctx.disabled) { %}
-          <div class="col-md-1"></div>
-        {% } %}
-        <div class="col-md-{% if (ctx.self.hasTypes) { %}7{% } else { %}9{% } %}"><strong>{{ctx.t('File Name')}}</strong></div>
-        <div class="col-md-2"><strong>{{ctx.t('Size')}}</strong></div>
+      <div class="col-md-1"><strong>{{ctx.t('#')}}</strong></div>
+        <div class="col-md-{% if (ctx.self.hasTypes) { %}3{% } else { %}5{% } %}"><strong>{{ctx.t('File Name')}}</strong></div>
+        <div class="col-md-2"><strong>{{ctx.t('Mime Type')}}</strong></div>
+        <div class="col-md-2"><strong>{{ctx.t('File Size')}}</strong></div>
         {% if (ctx.self.hasTypes) { %}
           <div class="col-md-2"><strong>{{ctx.t('Type')}}</strong></div>
         {% } %}
+         {% if (!ctx.disabled) { %}
+          <div class="col-md-2"><strong>{{ctx.t('Action')}}</strong></div>
+        {% } %}
       </div>
     </li>
-    {% ctx.files.forEach(function(file) { %}
+
+    {% ctx.files.forEach(function(file, index) { %}
       <li class="list-group-item">
         <div class="row">
-          {% if (!ctx.disabled) { %}
-            <div class="col-md-1"><i class="{{ctx.iconClass('remove')}}" ref="removeLink"></i></div>
-          {% } %}
-          <div class="col-md-{% if (ctx.self.hasTypes) { %}7{% } else { %}9{% } %}">
-            {% if (ctx.component.uploadOnly) { %}
-              {{file.originalName || file.name}}
-            {% } else { %}
-              <a href="{{file.url || '#'}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
+        <div class="col-md-1">{{index + 1}}</div>
+          <div class="col-md-{% if (ctx.self.hasTypes) { %}3{% } else { %}5{% } %}">
+            {{file.originalName || file.name}}
+            {% if (!ctx.component.uploadOnly) { %}
+              <a href="{{file.url || '#'}}" target="_blank" role="button" ref="fileLink">
+                <i class="fa fa-arrow-circle-down text-success"></i>
+              </a>
             {% } %}
           </div>
+          <div class="col-md-2">{{file.type}}</div>
           <div class="col-md-2">{{ctx.fileSize(file.size)}}</div>
           {% if (ctx.self.hasTypes && !ctx.disabled) { %}
             <div class="col-md-2">
@@ -40,10 +44,14 @@
           {% if (ctx.self.hasTypes && ctx.disabled) { %}
           <div class="col-md-2">{{file.fileType}}</div>
           {% } %}
+           {% if (!ctx.disabled) { %}
+            <div class="col-md-2"><span class="text-danger" role="button" ref="removeLink"><i class="{{ctx.iconClass('remove')}}"></i> Remove</span></div>
+          {% } %}
         </div>
       </li>
     {% }) %}
   </ul>
+
 {% } else { %}
   <div>
     {% ctx.files.forEach(function(file) { %}
@@ -58,6 +66,8 @@
     {% }) %}
   </div>
 {% } %}
+
+
 {% if (!ctx.disabled && (ctx.component.multiple || !ctx.files.length)) { %}
   {% if (ctx.self.useWebViewCamera) { %}
     <div class="fileSelector">
@@ -80,6 +90,8 @@
     <button class="btn btn-primary" ref="toggleCameraMode">{{ctx.t('Switch to file upload')}}</button>
   {% } %}
 {% } %}
+
+
 {% ctx.statuses.forEach(function(status) { %}
   <div class="file {{ctx.statuses.status === 'error' ? ' has-error' : ''}}">
     <div class="row">
@@ -103,6 +115,8 @@
     </div>
   </div>
 {% }) %}
+
+
 {% if (!ctx.component.storage || ctx.support.hasWarning) { %}
   <div class="alert alert-warning">
     {% if (!ctx.component.storage) { %}

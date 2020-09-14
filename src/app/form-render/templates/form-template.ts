@@ -80,7 +80,7 @@
         {% if (ctx.self.imageUpload) { %}
           <a href="#" ref="toggleCameraMode"><i class="fa fa-camera"></i> {{ctx.t('Use Camera,')}}</a>
         {% } %}
-        {{ctx.t('or')}} <a href="#" ref="fileBrowse" class="browse">{{ctx.t('browse')}}</a>
+        {{ctx.t('or')}} <a href="#" ref="fileBrowse" class="btn btn-info browse"><i class="fa fa-plus"></i> {{ctx.t('Browse')}}</a>
     </div>
   {% } else { %}
     <div>
